@@ -9,7 +9,7 @@ const Page = () => {
 
     useEffect(() => {
         if (context && !context.auth.isAuthenticated) {
-            router.push('/login/login')
+            router.push('/login')
         }
     }, [context, router]);
     return (
