@@ -18,7 +18,7 @@ export const login = async (data: LoginDto) => {
     try {
         const Cookies = await cookies();
         const res = await client.post('/login', data);
-        Cookies.set('TOKEN_COOKIE', res.data.token);
+        Cookies.set('TOKEN_COOKIE', JSON.stringify(res.data.token));
     } catch (error) {
         throw error;
     }

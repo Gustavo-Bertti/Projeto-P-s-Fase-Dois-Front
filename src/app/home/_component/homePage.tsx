@@ -28,7 +28,7 @@ const HomePage = () => {
             ) : (
                 <ul>
                     {posts.map((post) => (
-                        <li key={post.usuario.nome} className="mb-4 p-4 border rounded shadow">
+                        <li key={post.id} className="mb-4 p-4 border rounded shadow">
                             <h2 className="text-2xl font-semibold">{post.titulo}</h2>
                             <p className="text-sm text-gray-500">Publicado em: {new Date(post.dataCriacao).toLocaleDateString()}</p>
                         </li>
