@@ -1,15 +1,17 @@
 'use client';
 
-import { Formik } from "formik";
+import LoginUserSchema from "@/validations/schemas/LoginUserSchema";
+import { Formik, FormikHelpers } from "formik";
 import Link from "next/link";
-import LoginUserSchema from "../validations/schemas/LoginUserSchema";
 
-const Page = () => {
-    const Login = (values: { username: string, password: string }) => {
+
+const LoginPage = () => {
+    const Login = (values: { username: string, password: string }, { resetForm }: FormikHelpers<{ username: string; password: string }>) => {
         console.log("Dados enviados:", values);
+        resetForm();
     }
     return (
-        <Formik initialValues={{ username: '', password: '' }} onSubmit={(values) => { Login(values) }} validationSchema={LoginUserSchema}>
+        <Formik initialValues={{ username: '', password: '' }} onSubmit={(values, formikHelpers) => { Login(values, formikHelpers) }} validationSchema={LoginUserSchema}>
             {({ values, errors, handleChange, handleSubmit }) => (
                 <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
                     <div className="bg-white p-6 rounded shadow-md w-full max-w-sm">
@@ -46,14 +48,14 @@ const Page = () => {
                         </div>
                         <div className="flex items-center justify-between">
                             <button
-                                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
                                 type="button"
                                 onClick={() => handleSubmit()}
                             >
                                 Entrar
                             </button>
 
-                            <Link href="/registerUser" className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800">
+                            <Link href="/auth/registerUser" className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800">
                                 Registrar
                             </Link>
                         </div>
@@ -63,4 +65,4 @@ const Page = () => {
         </Formik>
     );
 }
-export default Page;
+export default LoginPage;

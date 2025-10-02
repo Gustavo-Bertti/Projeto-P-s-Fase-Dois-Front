@@ -1,7 +1,9 @@
-import "./globals.css";
+import Header from "@/components/Header/header";
+import { AuthProvider } from "@/context/AuthContext";
+import "@/styles/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
-import Header from "./components/Header/header";
-import { AuthProvider } from "./context/AuthContext";
+import AuthGuard from "./AuthGuard/authGuard";
+
 
 
 const geistSans = Geist({
@@ -21,6 +23,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="pt-br">
       <AuthProvider>

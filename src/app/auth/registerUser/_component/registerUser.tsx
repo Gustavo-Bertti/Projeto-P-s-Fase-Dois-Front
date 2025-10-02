@@ -1,19 +1,22 @@
 'use client';
 
-import { Formik } from "formik";
-import validationRegisterUserSchema from "../validations/schemas/RegisterUserSchema";
+import ValidationRegisterUserSchema from "@/validations/schemas/RegisterUserSchema";
+import { Formik, FormikHelpers } from "formik";
 
 
-const Page = () => {
-    const createUser = (values: { username: string, password: string, role: string }) => {
+
+const RegisterUser = () => {
+    const createUser = (values: { username: string, password: string, role: string }, { resetForm }: FormikHelpers<{ username: string, password: string, role: string }>) => {
         console.log("Dados enviados:", values);
+        resetForm();
     }
 
     return (
+
         <Formik
             initialValues={{ username: '', password: '', role: '' }}
-            onSubmit={(values) => createUser(values)}
-            validationSchema={validationRegisterUserSchema}
+            onSubmit={(values, formikHelpers) => createUser(values, formikHelpers)}
+            validationSchema={ValidationRegisterUserSchema}
         >
             {({ values, errors, handleChange, handleSubmit }) => (
                 <form
@@ -74,7 +77,7 @@ const Page = () => {
 
                         <div className="flex items-center justify-between">
                             <button
-                                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline cursor-pointer"
                                 type="submit"
                             >
                                 Registrar
@@ -84,7 +87,8 @@ const Page = () => {
                 </form>
             )}
         </Formik>
+
     );
 };
 
-export default Page;
+export default RegisterUser;
