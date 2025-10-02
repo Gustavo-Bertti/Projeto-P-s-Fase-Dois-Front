@@ -1,4 +1,4 @@
-import AuthGuard from "@/app/AuthGuard/authGuard";
+import AuthGuard from "@/app/authGuard/authGuard";
 import RegisterUser from "./_component/registerUser";
 
 const Page = () => {

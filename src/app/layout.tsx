@@ -2,7 +2,7 @@ import Header from "@/components/Header/header";
 import { AuthProvider } from "@/context/AuthContext";
 import "@/styles/globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
-import AuthGuard from "./AuthGuard/authGuard";
+
 
 
 

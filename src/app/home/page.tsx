@@ -1,4 +1,4 @@
-import AuthGuard from "../AuthGuard/authGuard";
+import AuthGuard from "../authGuard/authGuard";
 import HomePage from "./_component/homePage";
 
 const Page = () => {
