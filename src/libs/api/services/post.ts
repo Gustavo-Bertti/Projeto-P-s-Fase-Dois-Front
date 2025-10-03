@@ -14,3 +14,12 @@ export const getAllPosts = async () => {
         throw error;
     }
 }
+
+export const getPostBySearch = async (search: string) => {
+    try {
+        const res = await client.get<Postagem[]>(`/postagem/search?termo=${encodeURIComponent(search)}`);
+        return res.data;
+    } catch (error) {
+        throw error;
+    }
+}
