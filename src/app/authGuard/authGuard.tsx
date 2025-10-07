@@ -5,7 +5,6 @@ import { redirect } from "next/navigation";
 
 
 
-
 type AuthGuardProps = {
     children: React.ReactNode;
     allowWithoutAuth?: boolean;

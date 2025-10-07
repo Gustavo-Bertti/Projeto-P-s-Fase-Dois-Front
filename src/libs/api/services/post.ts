@@ -15,13 +15,21 @@ export const getAllPosts = async () => {
         throw error;
     }
 }
+<<<<<<< HEAD
 export const createPost = async (post: Postagem) => {
     try {
         const res = await client.post<Postagem>('/postagem', post);
+=======
+
+export const getPostBySearch = async (search: string) => {
+    try {
+        const res = await client.get<Postagem[]>(`/postagem/search?termo=${encodeURIComponent(search)}`);
+>>>>>>> 23765d63ad016d8c7965403a53640e4afe5c01f8
         return res.data;
     } catch (error) {
         throw error;
     }
+<<<<<<< HEAD
 }
 export const updatePost = async (post: Postagem) => {
     try {
@@ -58,3 +66,6 @@ export const getPostsByUserId = async () => {
         throw error;
     }
 }
+=======
+}
+>>>>>>> 23765d63ad016d8c7965403a53640e4afe5c01f8
