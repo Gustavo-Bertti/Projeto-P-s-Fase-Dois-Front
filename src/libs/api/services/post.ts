@@ -15,22 +15,36 @@ export const getAllPosts = async () => {
         throw error;
     }
 }
-export const createPost = async (post: Postagem) => {
+export const createPost = async (post: Omit<Postagem, "idUsuario">) => {
     try {
-        const res = await client.post<Postagem>('/postagem', post);
+        const token = await getToken();
+        if (!token) throw new Error("Usuário não autenticado");
+
+        const res = await client.post<Postagem>("/postagem", {
+            ...post,
+            idUsuario: token.idUsuario,
+        });
+
         return res.data;
     } catch (error) {
         throw error;
     }
-}
+};
+
 export const updatePost = async (post: Postagem) => {
     try {
-        const res = await client.put<Postagem>(`/postagem/${post.id}`, post);
+        const res = await client.put<Postagem>(`/postagem/${post.id}`, {
+            titulo: post.titulo,
+            conteudo: post.conteudo,
+            ativo: post.ativo,
+        });
+
         return res.data;
     } catch (error) {
         throw error;
     }
-}
+};
+
 export const deletePost = async (id: number) => {
     try {
         await client.delete(`/postagem/${id}`);
@@ -38,14 +52,6 @@ export const deletePost = async (id: number) => {
     } catch (error) {
         throw error;
     }   
-}
-export const getPostById = async (id: number) => {
-    try {
-        const res = await client.get<Postagem>(`/postagem/${id}`);
-        return res.data;
-    } catch (error) {
-        throw error;
-    }
 }
 export const getPostsByUserId = async () => {
     try {
